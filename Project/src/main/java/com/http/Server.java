@@ -1,5 +1,6 @@
 package com.http;
 
+import com.mqtt.MqttPublisher;
 import java.net.*;
 import java.io.*;
 
@@ -13,6 +14,7 @@ class Server {
         while (!clientMessage.equals("stop")) {
             clientMessage = dataInputStream.readUTF();
             System.out.println("client says: " + clientMessage);
+            MqttPublisher.publishMessage(clientMessage);
         }
         dataInputStream.close();
         socket.close();
